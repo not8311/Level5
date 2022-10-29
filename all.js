@@ -67,7 +67,6 @@ function render(data){
   })
   list.innerHTML = str;
   pointer.textContent = '';
-  regionSearch.value = '地區搜尋';
 }
 
 // 篩選地區
@@ -152,6 +151,7 @@ function addTickets(e){
   })
   Object.values(obj).length === 8 ? data.push(obj) : alert('請重新輸入資料')
   render(data);
+  regionSearch.value = '地區搜尋';
 }
 
 render(data);
