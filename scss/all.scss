@@ -103,6 +103,10 @@ section{
     background: $main_color;
     border: none;
     border-radius: 5px;
+    &:hover{
+      background: #64C3BF;
+      cursor: pointer;
+    }
   }
 }
 @media(max-width: 756px){
@@ -164,7 +168,6 @@ section{
 
 .list{
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 @media(max-width: 375px){
@@ -178,7 +181,8 @@ a{
 }
 
 .tickets{
-  width: calc((100% - 10%) / 3);
+  width: calc((100% - 6%) / 3);
+  margin-right: 2%;
   margin-bottom: 38px;
   @include flex;
   justify-content: center;
@@ -271,5 +275,6 @@ a{
 @media(max-width: 375px){
   .tickets{
     width: 90%;
+    margin-right: 0;
   }
 }

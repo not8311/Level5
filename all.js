@@ -101,50 +101,47 @@ function addTickets(e){
     switch (index) {
       case 0:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.name = addInfo;
         break;
       case 1:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.imgUrl = addInfo;
         break;
       case 2:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.area = addInfo;
         break;
       case 3:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.price = addInfo;
         break;
       case 4:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.group = addInfo;
         break;
       case 5:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
+        }else if(addInfo < 1 || addInfo > 10){
+          alert('請輸入1~10之間的數字');
+          item.children[1].value = '';
+          break;
         }
         obj.rate = addInfo;
         break;
       case 6:
         if (addInfo === '') {
-          alert('請輸入資料');
-          return;
+          break;
         }
         obj.description = addInfo;
         break;
@@ -152,7 +149,7 @@ function addTickets(e){
     obj.id = data.length;
     item.children[1].value = '';
   })
-  data.push(obj);
+  Object.values(obj).length === 8 ? data.push(obj) : alert('請重新輸入資料')
   render(data);
 }
 

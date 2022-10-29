@@ -152,6 +152,10 @@ section {
   border: none;
   border-radius: 5px;
 }
+.add-form .btn:hover {
+  background: #64C3BF;
+  cursor: pointer;
+}
 
 @media (max-width: 756px) {
   .add-form .addTicket_input {
@@ -208,7 +212,6 @@ section {
 }
 .list {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -222,7 +225,8 @@ a {
 }
 
 .tickets {
-  width: 30%;
+  width: 31.3333333333%;
+  margin-right: 2%;
   margin-bottom: 38px;
   display: flex;
   flex-direction: column;
@@ -315,5 +319,6 @@ a {
 @media (max-width: 375px) {
   .tickets {
     width: 90%;
+    margin-right: 0;
   }
 }/*# sourceMappingURL=all.css.map */
