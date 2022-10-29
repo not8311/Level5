@@ -67,6 +67,7 @@ function render(data){
   })
   list.innerHTML = str;
   pointer.textContent = '';
+  regionSearch.value = '地區搜尋';
 }
 
 // 篩選地區
