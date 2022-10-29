@@ -28,58 +28,132 @@ let data = [
     "group": 20,
     "price": 1765,
     "rate": 7
-  },{
-    "id": 3,
-    "name": "山林悠遊雙人套票",
-    "imgUrl": "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_4.png?raw=true",
-    "area": "台中",
-    "description": "全館客房均提供谷關無色無味之優質碳酸原湯，並取用八仙山之山冷泉供蒞臨貴賓沐浴及飲水使用。",
-    "group": 0,
-    "price": 880,
-    "rate": 9.3
-  },{
-    "id": 4,
-    "name": "漁樂碼頭釣魚體驗套票",
-    "imgUrl": "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_5.png?raw=true",
-    "area": "台中",
-    "description": "全館客房均提供谷關無色無味之優質碳酸原湯，並取用八仙山之山冷泉供蒞臨貴賓沐浴及飲水使用。",
-    "group": 5,
-    "price": 1280,
-    "rate": 8.2
-  },{
-    "id": 5,
-    "name": "熊森公園親子二日遊套票",
-    "imgUrl": "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_6.png?raw=true",
-    "area": "高雄",
-    "description": "全館客房均提供谷關無色無味之優質碳酸原湯，並取用八仙山之山冷泉供蒞臨貴賓沐浴及飲水使用。",
-    "group": 3,
-    "price": 2480,
-    "rate": 8.6
   }
 ];
 const list = document.querySelector('.list');
+const regionSearch =  document.querySelector('.regionSearch');
+const pointer = document.querySelector('.pointer');
+const addInput = document.querySelectorAll('.addTicket_input');
+const addBtn = document.querySelector('.btn');
+// console.log(addInput[0].children[1].value);
 
-let str = '';
+regionSearch.addEventListener('change',filterArea);
+addBtn.addEventListener('click',addTickets);
 
-data.forEach(item=>{
-  str += `<li class="tickets">
-  <a href="#">
+// 渲染畫面
+function render(data){
+  let str = '';
+  data.forEach(item=>{
+    str += `<li class="tickets">
     <span class="area">${item.area}</span>
-    <img src=${item.imgUrl}>
+    <div class="ticket_img">
+      <img src=${item.imgUrl}>
+    </div>
     <span class="ranks">${item.rate}</span>
     <div class="tickets_body">
-      <h3 class="title">${item.name}</h3>
+      <a href="#">
+        <h3 class="title">${item.name}</h3>
+      </a>
       <hr>
       <p class="content">${item.description}</p>
-      <div class="tickets_footer">
-        <div class="last_group">
-          <p><i class="fas fa-exclamation-circle"></i> 剩下最後 ${item.group} 組</p>
-        </div>
-        <p class="show_price">TWD <span class="price"> $${item.price}</span></p>
-      </div>
     </div>
-  </a>
-</li>`
-})
+    <div class="tickets_footer">
+      <div class="last_group">
+        <p><i class="fas fa-exclamation-circle"></i> 剩下最後 ${item.group} 組</p>
+      </div>
+      <p class="show_price">TWD <span class="price"> $${item.price}</span></p>
+    </div>
+  </li>`
+  })
+  list.innerHTML = str;
+  pointer.textContent = '';
+}
 
-list.innerHTML = str;
+// 篩選地區
+function filterArea(e) {
+  let filterData = [];
+  switch(e.target.value){
+    case '台北':
+      filter('台北');
+      break;
+    case '台中':
+      filter('台中');
+      break;
+    case '高雄':
+      filter('高雄');
+      break;
+    case '':
+      render(data);
+      break;
+  }
+  function filter(area){
+    filterData =  data.filter(item=>item.area === area);
+    render(filterData);
+    pointer.textContent = `本次搜尋共 ${filterData.length} 筆資料`;
+  }
+}
+
+// 新增套票
+function addTickets(e){
+  let obj = {};
+  addInput.forEach((item,index)=>{
+    let addInfo = item.children[1].value;
+    switch (index) {
+      case 0:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.name = addInfo;
+        break;
+      case 1:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.imgUrl = addInfo;
+        break;
+      case 2:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.area = addInfo;
+        break;
+      case 3:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.price = addInfo;
+        break;
+      case 4:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.group = addInfo;
+        break;
+      case 5:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.rate = addInfo;
+        break;
+      case 6:
+        if (addInfo === '') {
+          alert('請輸入資料');
+          return;
+        }
+        obj.description = addInfo;
+        break;
+    }
+    obj.id = data.length;
+    item.children[1].value = '';
+  })
+  data.push(obj);
+  render(data);
+}
+
+render(data);
